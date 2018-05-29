@@ -7,8 +7,13 @@ class BonusDrink
     end
 
     private
-    def bonus(amount)
-      (amount % BONUS_THRESHOLD + amount / BONUS_THRESHOLD).to_i
+    def bonus(base_amount, acc = 0)
+      if base_amount >= BONUS_THRESHOLD
+        acc += 1
+        bonus(base_amount - BONUS_THRESHOLD + 1, acc)
+      else
+        acc
+      end
     end
   end
 end
