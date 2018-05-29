@@ -1,5 +1,13 @@
 class BonusDrink
-  def self.total_count_for(amount)
-    amount + (amount / 3).to_i
+  BONUS_THRESHOLD = 3
+  class << self
+    def total_count_for(amount)
+      amount + bonus(amount)
+    end
+
+    private
+    def bonus(amount)
+      (amount / BONUS_THRESHOLD).to_i
+    end
   end
 end
